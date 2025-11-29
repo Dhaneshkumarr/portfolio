@@ -431,7 +431,7 @@ const Portfolio = () => {
             </div>
 
             {/* Copyright */}
-            <div className="my-16 pt-8 border-t border-white/5 text-center">
+            <div className="mt-12 py-8 border-t border-white/5 text-center">
               <div className="text-zinc-600 text-xs sm:text-sm">
                 &copy; 2025 Dhanesh Kumar. Crafted with Next.js + Tailwind.
               </div>
