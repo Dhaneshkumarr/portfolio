@@ -13,7 +13,20 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Dhanesh's Portfolio",
-  description: "I’m Dhanesh, a Full Stack Developer offering freelance services and open to full-time opportunities. I build fast, scalable and user-friendly web applications."
+  description: "I’m Dhanesh, a Full Stack Developer offering freelance services and open to full-time opportunities. I build fast, scalable and user-friendly web applications.",
+  openGraph: {
+    url: "https://codebydhanesh.vercel.app/",
+    siteName: "Dhanesh Portfolio",
+    images: [
+      {
+        url: "/og-img.webp",
+        width: 1200,
+        height: 630,
+        alt: "Dhanesh Portfolio Preview",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
