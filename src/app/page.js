@@ -529,6 +529,7 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
               alt={`${title} Screenshot`}
               fill
               className="object-cover object-top pt-8 sm:pt-10"
+              loading="lazy"
             />
           </div>
         </div>
