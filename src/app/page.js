@@ -60,7 +60,7 @@ const Portfolio = () => {
   });
 
   const typewriterText = useSmoothTypewriter([
-    "Full-Stack Web Developer",
+    "Full Stack Developer",
     "Web App & Dashboard Builder",
     "CMS & Admin Panel Specialist",
   ], {
@@ -201,7 +201,7 @@ const Portfolio = () => {
               color="emerald"
               status="Live"
               projectImg={'/project-3.webp'}
-              liveLink={'https://healthcarecms-project.netlify.app/'}
+              liveLink={'https://docwindigital.com/'}
             />
 
             {/* Project 3 */}
@@ -234,7 +234,7 @@ const Portfolio = () => {
             <div className="space-y-8 sm:space-y-12">
               <TimelineItem
                 date="July 2025 - Present"
-                role="Full-Stack Web Developer"
+                role="Full Stack Developer"
                 company="Freelance"
                 current={true}
                 description="Building end-to-end web solutions for global clients. Managing deployment pipelines, database architecture, and ensuring 100% uptime for production apps."
