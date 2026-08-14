@@ -28,3 +28,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom Hardware-Accelerated Marquee */
+@keyframes smooth-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: smooth-scroll 25s linear infinite;
+  will-change: transform;
+  /* Forces GPU acceleration */
+}

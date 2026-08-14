@@ -60,6 +60,7 @@ const Portfolio = () => {
   });
 
   const typewriterText = useSmoothTypewriter([
+    "Software Developer",
     "Full Stack Developer",
     "Web App & Dashboard Builder",
     "CMS & Admin Panel Specialist",
@@ -80,7 +81,7 @@ const Portfolio = () => {
       {/* Background Grid Pattern */}
       <div className="fixed inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundImage: 'linear-linear(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-linear(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
           backgroundSize: '50px 50px'
         }}
       />
@@ -119,7 +120,7 @@ const Portfolio = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-3 mb-6 sm:mb-8"
           >
-            <span className="h-[1px] w-12 bg-indigo-500"></span>
+            <span className="h-px w-12 bg-indigo-500"></span>
             <span className="text-indigo-400 font-mono text-xs sm:text-sm tracking-widest uppercase">Available for work</span>
           </motion.div>
 
@@ -139,7 +140,7 @@ const Portfolio = () => {
             className="h-16 sm:h-20 text-xl sm:text-2xl md:text-4xl text-zinc-400 font-light"
           >
             I am a{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-semibold font-mono">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400 font-semibold font-mono">
               {typewriterText}
             </span>
             <span className="ml-1 animate-pulse">|</span>
@@ -173,11 +174,53 @@ const Portfolio = () => {
           </motion.div>
         </section>
 
+        {/* --- TECH MARQUEE ANIMATION (OPTIMIZED GPU VERSION) --- */}
+        <div className="w-full overflow-hidden border-y border-white/5 bg-zinc-900/20 py-4 sm:py-6 flex relative">
+          {/* Left/Right fading linears */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-linear-to-r from-[#0a0a0a] to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-linear-to-l from-[#0a0a0a] to-transparent z-10"></div>
+
+          {/* Pure CSS Animated Container - No Framer Motion */}
+          <div className="animate-marquee flex gap-8 sm:gap-16 whitespace-nowrap px-4 items-center w-max">
+            {['Next.js', 'React Native', 'AWS SDK', 'Prisma ORM', 'WebRTC', 'MySQL', 'Node.js', 'Stripe / UPI', 'Spring Boot', 'Tailwind', 'Next.js', 'React Native', 'AWS SDK', 'Prisma ORM', 'WebRTC', 'MySQL', 'Node.js', 'Stripe / UPI', 'Spring Boot', 'Tailwind'].map((tech, i) => (
+              <span key={i} className="text-zinc-500 font-mono text-xs sm:text-sm uppercase tracking-widest flex items-center gap-8 sm:gap-16">
+                {tech} <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/50"></span>
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* --- PROJECTS SECTION --- */}
         <section id="projects" className="py-16 sm:py-20">
           <SectionHeader title="Selected Works" subtitle="Things I've built that actually live on the internet." />
 
           <div className="flex flex-col gap-16 sm:gap-24 mt-12 sm:mt-16">
+
+            <ProjectCard
+              title="Versai Academy"
+              tagline="Multi-Role EdTech LMS & Business System"
+              description="An end-to-end learning management system built from scratch. Engineered the complete architecture including OTP auth, secure video delivery, role-based dashboards (Student, Instructor, Admin), payment gateways, and an automated verifiable certificate generation engine."
+              tech={["Next.js", "Prisma", "AWS / Cloudflare", "Node.js", "MySQL", "RBAC"]}
+              align="right"
+              color="indigo"
+              status="Live"
+              projectImg={'/versai-mockup.webp'}
+              liveLink={'https://versaiacademy.org'}
+              domain=".org"
+            />
+
+            <ProjectCard
+              title="Live Connect Platform"
+              tagline="React Native Streaming & Financial Engine"
+              description="A complete mobile ecosystem featuring real-time video calls, live streaming, and a virtual coin economy. Built the full stack including the mobile app and the heavy backend ledger handling UPI intents, creator payouts, and admin moderation."
+              tech={["React Native", "Expo", "WebRTC", "Wallet System", "Node.js"]}
+              align="left"
+              color="orange"
+              status="Production"
+              projectImg={'/social-app-mockup.webp'}
+              liveLink={'https://queerromance.online/releases/QueerRomance.apk'}
+              domain=".online"
+            />
 
             <ProjectCard
               title="FlightOFinder"
@@ -189,6 +232,7 @@ const Portfolio = () => {
               status="Live"
               projectImg={'/project-1.webp'}
               liveLink={'https://flightofinder-project.netlify.app/'}
+              domain=".com"
             />
 
             {/* Project 2 */}
@@ -202,6 +246,7 @@ const Portfolio = () => {
               status="Live"
               projectImg={'/project-3.webp'}
               liveLink={'https://docwindigital.com/'}
+              domain=".com"
             />
 
             {/* Project 3 */}
@@ -215,6 +260,7 @@ const Portfolio = () => {
               status="Live"
               projectImg={'/project-2.webp'}
               liveLink={'https://farepals-project.netlify.app/'}
+              domain=".com"
             />
 
             {/* FIX #2: Coming Soon Placeholder with 3rd GREEN dot */}
@@ -229,21 +275,27 @@ const Portfolio = () => {
 
           <div className="mt-12 sm:mt-16 max-w-3xl mx-auto relative">
             {/* Timeline Line */}
-            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-indigo-500 via-zinc-800 to-transparent"></div>
+            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-1px bg-linear-to-b from-indigo-500 via-zinc-800 to-transparent"></div>
 
             <div className="space-y-8 sm:space-y-12">
               <TimelineItem
-                date="July 2025 - Present"
+                date="May 2026 - Present"
+                role="Full Stack Developer"
+                company="Versai Technology OPC Pvt. Ltd., Jaipur, Rajasthan"
+                current={true}
+                description="Architecting and developing complete end-to-end LMS and mobile platforms. Building core infrastructure handling OTP auth, payment gateways, live streaming (WebRTC), and complex role-based admin panels."
+              />
+              <TimelineItem
+                date="July 2025 - April 2026"
                 role="Full Stack Developer"
                 company="Freelance"
-                current={true}
-                description="Building end-to-end web solutions for global clients. Managing deployment pipelines, database architecture, and ensuring 100% uptime for production apps."
+                description="Delivered full-stack web applications for clients from scratch. Managed deployment pipelines, backend REST APIs, and database architecture using Next.js, Node.js, and Prisma."
               />
               <TimelineItem
                 date="June 2024 - July 2025"
                 role="Web Developer"
-                company="Travel Agency (New Delhi)"
-                description="Specialized in converting Figma designs to pixel-perfect Next.js websites using Tailwind CSS. Enhanced UI/UX while maintaining design consistency across multiple client projects."
+                company="AVS Holidays"
+                description="Built responsive flight booking platforms. Converted Figma designs to pixel-perfect Next.js apps, focusing on frontend performance and integrating complex third-party travel APIs."
               />
             </div>
           </div>
@@ -254,10 +306,29 @@ const Portfolio = () => {
           <SectionHeader title="The Toolbox" subtitle="Technologies I use to break and fix things." />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-10">
-            <SkillBox icon={<Globe />} title="Frontend" skills={['Next.js', 'React', 'Tailwind', 'Framer Motion']} />
-            <SkillBox icon={<Database />} title="Backend" skills={['Node.js', 'Express', 'Spring Boot', 'MySQL']} />
-            <SkillBox icon={<Terminal />} title="DevOps" skills={['Git / GitHub', 'Docker', 'Vercel', 'Linux']} />
-            <SkillBox icon={<Layout />} title="Design" skills={['UI Principles', 'Responsive', 'Accessibility']} />
+            <SkillBox
+              icon={<Globe />}
+              title="Web & Mobile"
+              skills={['Next.js / React', 'React Native / Expo', 'JS / Tailwind', 'Bootstrap']}
+            />
+
+            <SkillBox
+              icon={<Database />}
+              title="Backend & DB"
+              skills={['Node / Express', 'Java / Spring Boot', 'PostgreSQL / MySQL', 'Prisma ORM']}
+            />
+
+            <SkillBox
+              icon={<Server />}
+              title="Cloud & Arch"
+              skills={['AWS / Cloudflare', 'Supabase / Firebase', 'WebRTC / Docker', 'Nodemailer / Multer']}
+            />
+
+            <SkillBox
+              icon={<Layers />}
+              title="Systems"
+              skills={['Payment Gateways', 'Wallet / Coin Engine', 'OTP / RBAC Auth', 'UI Principles']}
+            />
           </div>
         </section>
 
@@ -278,10 +349,10 @@ const Portfolio = () => {
                   </div>
                 </div>
                 <p>
-                  I believe that a developer's job isn't just to write codeâ€"it's to solve business problems. Whether it's optimizing a slow database query for a healthcare portal or crafting a smooth animation for a travel site, I focus on the <strong className="text-white">impact</strong>.
+                  I believe a developer's job isn't just to write code—it's to architect scalable business engines. From building <strong className="text-white">role-based LMS platforms</strong> with automated certifications, to engineering <strong className="text-white">real-time mobile apps</strong> with virtual coin economies and WebRTC streaming, I focus on systems that can handle complex workflows.
                 </p>
                 <p>
-                  When I'm not coding, I'm exploring new UI trends or contributing to open source.
+                  When I'm not coding, I'm usually exploring modern cloud architectures or testing out the latest UI trends to make sure the user experience is as bulletproof as the backend ledger.
                 </p>
               </div>
             </div>
@@ -289,7 +360,7 @@ const Portfolio = () => {
             {/* FIX #3: About Section Image - Fixed Mobile Visibility */}
             <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
               <div className="w-full h-full rounded-2xl bg-zinc-900 border-2 border-white/10 relative overflow-hidden shadow-2xl shadow-indigo-500/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent z-10" />
+                <div className="absolute inset-0 bg-linear-to-br from-indigo-500/5 to-transparent z-10" />
                 <Image
                   src="/about-me.webp"
                   alt="About Developer Photo"
@@ -459,7 +530,7 @@ const SocialLink = ({ href, icon }) => (
   </a>
 );
 
-const ProjectCard = ({ title, tagline, description, tech, align, color, status, projectImg, liveLink }) => {
+const ProjectCard = ({ title, tagline, description, tech, align, color, status, projectImg, liveLink, domain = ".com" }) => {
   // Color mapping
   const colorClasses = {
     indigo: "from-indigo-500/20 to-purple-500/20 hover:border-indigo-500/50",
@@ -519,10 +590,10 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/60"></div>
-          <div className="ml-2 sm:ml-4 flex-1 h-5 sm:h-6 bg-zinc-800/50 rounded text-xs flex items-center px-2 sm:px-3 text-zinc-600 font-mono hidden sm:flex">https://{title.toLowerCase().replace(/\s+/g, '')}.com</div>
+          <div className="ml-2 sm:ml-4 flex-1 h-5 sm:h-6 bg-zinc-800/50 rounded text-xs flex items-center px-2 sm:px-3 text-zinc-600 font-mono hidden sm:flex">https://{title.toLowerCase().replace(/\s+/g, '')}{domain}</div>
         </div>
         {/* Image Container */}
-        <div className="absolute inset-0 pt-8 sm:pt-10 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black">
+        <div className="absolute inset-0 pt-8 sm:pt-10 bg-linear-to-br from-zinc-900 via-zinc-950 to-black">
           <div className="w-full h-full flex items-center justify-center p-4 sm:p-8 overflow-hidden">
             <Image
               src={projectImg}
@@ -533,8 +604,8 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
             />
           </div>
         </div>
-        {/* Overlay gradient for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent pointer-events-none"></div>
+        {/* Overlay linear for depth */}
+        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/50 to-transparent pointer-events-none"></div>
       </div>
     </motion.div>
   );
