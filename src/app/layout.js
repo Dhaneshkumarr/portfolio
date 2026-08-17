@@ -134,7 +134,7 @@ export const metadata = {
 
   // ===== ADD THIS NEW SECTION =====
   verification: {
-    google: "your-google-search-console-verification-code", // Add your code
+    google: "DoESEVWI8frfdL5xTYudsgIuPB-EYMYycQwd0VKoQZM",
   },
 
   alternates: {
