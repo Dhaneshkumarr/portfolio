@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import {
   Github,
   Linkedin,
@@ -91,7 +91,7 @@ const Portfolio = () => {
 
       {/* --- NAVIGATION --- */}
       <nav className="fixed top-6 left-0 right-0 z-40 px-4">
-        <div className="w-full max-w-4xl mx-auto bg-black/50 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex justify-between items-center shadow-2xl">
+        <div className="w-full max-w-4xl mx-auto bg-black/50 border border-white/10 rounded-full px-6 py-3 flex justify-between items-center shadow-2xl">
           <a href="/" className="font-bold text-lg tracking-tight hover:text-indigo-400 transition-colors">
             DK <span className="text-indigo-500">.</span>
           </a>
@@ -230,7 +230,7 @@ const Portfolio = () => {
               align="right"
               color="indigo"
               status="Live"
-              projectImg={'/project-1.webp'}
+              projectImg={'/flightofinder-mockup.webp'}
               liveLink={'https://flightofinder-project.netlify.app/'}
               domain=".com"
             />
@@ -244,7 +244,7 @@ const Portfolio = () => {
               align="left"
               color="emerald"
               status="Live"
-              projectImg={'/project-3.webp'}
+              projectImg={'/docwin-mockup.webp'}
               liveLink={'https://docwindigital.com/'}
               domain=".com"
             />
@@ -258,7 +258,7 @@ const Portfolio = () => {
               align="right"
               color="orange"
               status="Live"
-              projectImg={'/project-2.webp'}
+              projectImg={'/flight-portal-mockup.webp'}
               liveLink={'https://farepals-project.netlify.app/'}
               domain=".com"
             />
@@ -422,7 +422,7 @@ const Portfolio = () => {
               </div>
 
               {/* Right Side - Compact Contact Form */}
-              <div className="bg-zinc-900/50 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-sm">
+              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-6 sm:p-8">
                 <h3 className="text-2xl font-bold mb-2">Get in touch</h3>
                 <p className="text-zinc-400 mb-6 text-sm">
                   Have a project in mind? Let's discuss it.
@@ -550,7 +550,7 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className={`group relative grid md:grid-cols-2 gap-6 sm:gap-8 items-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900/50 border border-white/5 backdrop-blur-sm ${colorClasses[color]} transition-colors duration-500 w-full`}
+      className={`group relative grid md:grid-cols-2 gap-6 sm:gap-8 items-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900 border border-white/5 ${colorClasses[color]} transition-colors duration-500 w-full`}
     >
       <div className={`order-2 ${align === 'right' ? 'md:order-1' : 'md:order-2'}`}>
         <div className="flex items-center gap-3 mb-3 sm:mb-4">
@@ -572,10 +572,10 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
         <div className="flex flex-row gap-2 sm:gap-3">
           <button
             onClick={() => window.open(liveLink, "_blank")}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-white text-black font-bold rounded-full text-sm hover:opacity-90 transition-opacity whitespace-nowrap flex-shrink-0">
+            className="flex items-center justify-center cursor-pointer gap-2 px-4 py-2 bg-white text-black font-bold rounded-full text-sm hover:opacity-90 transition-opacity whitespace-nowrap shrink-0">
             View Live <ArrowUpRight size={16} />
           </button>
-          <button className="flex items-center justify-center gap-2 px-4 py-2 border border-white/20 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-colors whitespace-nowrap flex-shrink-0">
+          <button className="flex items-center justify-center gap-2 px-4 py-2 border border-white/20 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-colors whitespace-nowrap shrink-0">
             View Code
           </button>
         </div>
@@ -586,7 +586,7 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
         className={`order-1 ${align === 'right' ? 'md:order-2' : 'md:order-1'} h-[200px] sm:h-[280px] md:h-[350px] bg-zinc-950 rounded-xl sm:rounded-2xl border border-white/10 relative overflow-hidden shadow-2xl group-hover:shadow-indigo-500/20 transition-all duration-500`}
       >
         {/* Browser Window Header */}
-        <div className="absolute top-0 left-0 right-0 h-8 sm:h-10 bg-zinc-900/80 backdrop-blur-sm border-b border-white/5 flex items-center px-3 sm:px-4 gap-2 z-10">
+        <div className="absolute top-0 left-0 right-0 h-8 sm:h-10 bg-zinc-900 border-b border-white/5 flex items-center px-3 sm:px-4 gap-2 z-10">
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/60"></div>
@@ -622,7 +622,7 @@ const ComingSoonCard = () => (
   >
 
     <div className="flex items-start gap-4 sm:gap-6 md:w-2/3 mt-8 sm:mt-0">
-      <div className="w-12 sm:w-16 h-12 sm:h-16 bg-green-500/10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+      <div className="w-12 sm:w-16 h-12 sm:h-16 bg-green-500/10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0">
         <Rocket size={28} className="text-green-400" />
       </div>
       <div>
@@ -633,7 +633,7 @@ const ComingSoonCard = () => (
         </p>
       </div>
     </div>
-    <div className="flex-shrink-0">
+    <div className="shrink-0">
       <span className="px-4 sm:px-6 py-2 sm:py-3 bg-zinc-800 border border-zinc-700 text-xs sm:text-sm rounded-full text-zinc-300 font-bold">In Development...</span>
     </div>
   </motion.div>
