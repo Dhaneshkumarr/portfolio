@@ -103,7 +103,7 @@ export const metadata = {
     siteName: "Dhanesh Kumar",
     images: [
       {
-        url: "/og.webp",
+        url: "/og-img.webp",
         width: 1200,
         height: 630,
         alt: "Dhanesh Kumar - Hire Software Developer",
@@ -117,7 +117,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Dhanesh Kumar | Software Developer | Hire Full Stack Engineer",
     description: "Building high-performance, scalable web applications. Available for full-time roles and freelance projects. Explore my work.",
-    images: ["/og.webp"],
+    images: ["/og-img.webp"],
   },
 
   robots: {
@@ -132,7 +132,6 @@ export const metadata = {
     },
   },
 
-  // ===== ADD THIS NEW SECTION =====
   verification: {
     google: "DoESEVWI8frfdL5xTYudsgIuPB-EYMYycQwd0VKoQZM",
   },
