@@ -428,12 +428,58 @@ const Portfolio = () => {
                   Have a project in mind? Let's discuss it.
                 </p>
 
-                <form className="space-y-4">
-                  {/* Name & Email in one row */}
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target;
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const statusText = document.getElementById('form-status');
+
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...</span>';
+                    statusText.innerText = "";
+
+                    const formData = new FormData(form);
+                    formData.append("access_key", "5b281aa0-61c2-4b2c-8d6b-a758a46bad89");
+
+                    try {
+                      const response = await fetch("https://api.web3forms.com/submit", {
+                        method: "POST",
+                        body: formData
+                      });
+
+                      const data = await response.json();
+
+                      if (data.success) {
+                        statusText.innerHTML = "✅ Message sent successfully! I'll get back to you soon.";
+                        statusText.className = "text-sm text-emerald-400 text-center font-medium mt-3 transition-all";
+                        form.reset();
+                      } else {
+                        statusText.innerHTML = "Something went wrong. Please try again.";
+                        statusText.className = "text-sm text-red-400 text-center font-medium mt-3 transition-all";
+                      }
+                    } catch (error) {
+                      statusText.innerHTML = "Network error. Please email me directly.";
+                      statusText.className = "text-sm text-red-400 text-center font-medium mt-3 transition-all";
+                    } finally {
+                      submitBtn.disabled = false;
+                      submitBtn.innerHTML = '<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Send Message</span>';
+
+                      setTimeout(() => {
+                        statusText.innerText = "";
+                      }, 5000);
+                    }
+                  }}
+                  className="space-y-4"
+                >
+                  {/* Honeypot Spam Protection (Hidden) */}
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
                   <div className="grid sm:grid-cols-2 gap-3">
                     <div>
                       <input
                         type="text"
+                        name="name"
                         placeholder="Your Name *"
                         required
                         className="w-full px-3 py-2 text-sm bg-zinc-800/50 border border-white/10 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500/50 transition-colors"
@@ -442,6 +488,7 @@ const Portfolio = () => {
                     <div>
                       <input
                         type="email"
+                        name="email"
                         placeholder="Email *"
                         required
                         className="w-full px-3 py-2 text-sm bg-zinc-800/50 border border-white/10 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500/50 transition-colors"
@@ -449,10 +496,10 @@ const Portfolio = () => {
                     </div>
                   </div>
 
-                  {/* Project Type & Budget in one row */}
                   <div className="grid sm:grid-cols-2 gap-3">
                     <div>
                       <select
+                        name="project_type"
                         required
                         className="w-full px-3 py-2 text-sm bg-zinc-800/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-indigo-500/50 transition-colors appearance-none"
                       >
@@ -460,25 +507,26 @@ const Portfolio = () => {
                         <option value="freelance" className="bg-zinc-800">Freelance Project</option>
                         <option value="fulltime" className="bg-zinc-800">Full-time Role</option>
                         <option value="contract" className="bg-zinc-800">Contract Work</option>
-                        <option value="contract" className="bg-zinc-800">Other</option>
+                        <option value="other" className="bg-zinc-800">Other</option>
                       </select>
                     </div>
                     <div>
                       <select
+                        name="budget"
                         className="w-full px-3 py-2 text-sm bg-zinc-800/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-indigo-500/50 transition-colors appearance-none"
                       >
                         <option value="" className="bg-zinc-800">Budget (Optional)</option>
-                        <option value="1k-5k" className="bg-zinc-800">$349 - $3k</option>
-                        <option value="5k-15k" className="bg-zinc-800">$5k - $12k</option>
+                        <option value="349-3k" className="bg-zinc-800">$349 - $3k</option>
+                        <option value="5k-12k" className="bg-zinc-800">$5k - $12k</option>
                         <option value="15k-plus" className="bg-zinc-800">$15k+</option>
-                        <option value="15k-plus" className="bg-zinc-800">To be discussed</option>
+                        <option value="to-be-discussed" className="bg-zinc-800">To be discussed</option>
                       </select>
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div>
                     <textarea
+                      name="message"
                       placeholder="Tell me about your project, timeline, and any specific requirements..."
                       required
                       rows={3}
@@ -486,14 +534,17 @@ const Portfolio = () => {
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-500 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 text-sm"
+                    className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-500 disabled:bg-indigo-600/50 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 text-sm"
                   >
-                    <Send size={16} />
-                    Send Message
+                    <span className="flex items-center gap-2">
+                      <Send size={16} /> Send Message
+                    </span>
                   </button>
+
+                  <div id="form-status" className="min-h-5"></div>
+
                   <p className="text-xs text-zinc-500 text-center">
                     I typically respond within 24 hours. Your information is secure and never shared.
                   </p>
@@ -501,10 +552,9 @@ const Portfolio = () => {
               </div>
             </div>
 
-            {/* Copyright */}
             <div className="mt-12 py-8 border-t border-white/5 text-center">
               <div className="text-zinc-600 text-xs sm:text-sm">
-                &copy; 2025 Dhanesh Kumar. Crafted with Next.js + Tailwind.
+                &copy; {new Date().getFullYear()} Dhanesh Kumar. All rights reserved.
               </div>
             </div>
           </div>
@@ -590,7 +640,7 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/60"></div>
-          <div className="ml-2 sm:ml-4 flex-1 h-5 sm:h-6 bg-zinc-800/50 rounded text-xs flex items-center px-2 sm:px-3 text-zinc-600 font-mono hidden sm:flex">https://{title.toLowerCase().replace(/\s+/g, '')}{domain}</div>
+          <div className="ml-2 sm:ml-4 flex-1 h-5 sm:h-6 bg-zinc-800/50 rounded text-xs flex items-center px-2 sm:px-3 text-zinc-600 font-mono sm:flex">https://{title.toLowerCase().replace(/\s+/g, '')}{domain}</div>
         </div>
         {/* Image Container */}
         <div className="absolute inset-0 pt-8 sm:pt-10 bg-linear-to-br from-zinc-900 via-zinc-950 to-black">

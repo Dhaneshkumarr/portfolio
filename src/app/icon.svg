@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background with slight curve -->
+  <rect width="100" height="100" rx="24" fill="#09090b" />
+  
+  <!-- DK. Text with Indigo dot -->
+  <text 
+    x="50%" 
+    y="55%" 
+    font-family="system-ui, -apple-system, sans-serif" 
+    font-size="42" 
+    font-weight="800" 
+    fill="#ffffff" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    letter-spacing="-2"
+  >
+    DK<tspan fill="#6366f1">.</tspan>
+  </text>
+</svg>
