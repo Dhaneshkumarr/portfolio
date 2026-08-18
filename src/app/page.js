@@ -381,7 +381,7 @@ const Portfolio = () => {
           {/* Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 blur-[100px] rounded-full z-0 pointer-events-none" />
 
-          <div className="relative z-10 px-4 max-w-7xl mx-auto">
+          <div className="relative z-10 max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
               {/* Left Side - Original Content */}
@@ -649,7 +649,7 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
               src={projectImg}
               alt={`${title} Screenshot`}
               fill
-              className="object-cover object-top pt-8 sm:pt-10"
+              className="object-contain sm:object-cover object-top pt-8 sm:pt-10 px-2 sm:px-0"
               loading="lazy"
             />
           </div>
