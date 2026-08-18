@@ -633,29 +633,29 @@ const ProjectCard = ({ title, tagline, description, tech, align, color, status, 
 
       {/* Project Screenshot Container */}
       <div
-        className={`order-1 ${align === 'right' ? 'md:order-2' : 'md:order-1'} h-[200px] sm:h-[280px] md:h-[350px] bg-zinc-950 rounded-xl sm:rounded-2xl border border-white/10 relative overflow-hidden shadow-2xl group-hover:shadow-indigo-500/20 transition-all duration-500`}
+        className={`order-1 ${align === 'right' ? 'md:order-2' : 'md:order-1'} h-[250px] sm:h-[300px] md:h-[350px] bg-zinc-950 rounded-xl sm:rounded-2xl border border-white/10 relative overflow-hidden shadow-2xl group-hover:shadow-indigo-500/20 transition-all duration-500`}
       >
         {/* Browser Window Header */}
-        <div className="absolute top-0 left-0 right-0 h-8 sm:h-10 bg-zinc-900 border-b border-white/5 flex items-center px-3 sm:px-4 gap-2 z-10">
+        <div className="absolute top-0 left-0 right-0 h-8 sm:h-10 bg-zinc-900 border-b border-white/5 flex items-center px-3 sm:px-4 gap-2 z-20">
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/60"></div>
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/60"></div>
           <div className="ml-2 sm:ml-4 flex-1 h-5 sm:h-6 bg-zinc-800/50 rounded text-xs flex items-center px-2 sm:px-3 text-zinc-600 font-mono sm:flex">https://{title.toLowerCase().replace(/\s+/g, '')}{domain}</div>
         </div>
+
         {/* Image Container */}
         <div className="absolute inset-0 pt-8 sm:pt-10 bg-linear-to-br from-zinc-900 via-zinc-950 to-black">
-          <div className="w-full h-full flex items-center justify-center p-4 sm:p-8 overflow-hidden">
-            <Image
-              src={projectImg}
-              alt={`${title} Screenshot`}
-              fill
-              className="object-contain sm:object-cover object-top pt-8 sm:pt-10 px-2 sm:px-0"
-              loading="lazy"
-            />
-          </div>
+          <Image
+            src={projectImg}
+            alt={`${title} Screenshot`}
+            fill
+            className="object-cover object-top"
+            loading="lazy"
+          />
         </div>
+
         {/* Overlay linear for depth */}
-        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/50 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-zinc-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
       </div>
     </motion.div>
   );
